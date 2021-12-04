@@ -6,7 +6,7 @@ import javax.validation.constraints.*;
 import java.sql.Date;
 
 @Data
-public class ManagerProjectDTO {
+public class CreatorProjectDTO {
 
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 10, max = 50, message = "Name should be between 10 and 50 characters")
@@ -24,7 +24,7 @@ public class ManagerProjectDTO {
     private String status;
 
     @NotEmpty(message = "Country should not be empty")
-    private String county;
+    private String country;
 
     @NotEmpty(message = "City should not be empty")
     private String city;
@@ -35,22 +35,10 @@ public class ManagerProjectDTO {
     @NotEmpty(message = "Build should not be empty")
     private String build;
 
-    @NotEmpty(message = "Build should not be empty")
-    @Size(min = 2, max = 10, message = "Name should be between 2 and 10 characters")
-    private String roomName;
-
-    @NotEmpty(message = "Number of rows should not be empty")
+    @NotEmpty(message = "Mayor id should not be empty")
     @Positive
-    private Integer numberRows;
-
-    @NotEmpty(message = "Number of seats should not be empty")
-    @Positive
-    private Integer numberSeats;
-
-    @NotEmpty(message = "Manager id should not be empty")
-    @Positive
-    @Min(value = 1, message = "Manager id must be greater than 1")
-    private Long managerId;
+    @Min(value = 1, message = "Mayor id must be greater than 1")
+    private Long mayorId;
 
 }
 

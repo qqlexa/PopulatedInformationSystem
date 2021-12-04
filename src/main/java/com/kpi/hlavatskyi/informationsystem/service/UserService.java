@@ -25,13 +25,13 @@ public class UserService {
     }
 
     public void insert() {
-        RoleEntity roleUser = roleRepository.findByName("MANAGER");
+        RoleEntity roleUser = roleRepository.findByName("MAYOR");
         List<RoleEntity> roles = new ArrayList<>();
         roles.add(roleUser);
 
         UserEntity user = new UserEntity();
-        user.setUsername("Manager");
-        user.setEmail("manager@gmail.com");
+        user.setUsername("Mayor");
+        user.setEmail("mayor@gmail.com");
         user.setRoles(roles);
         userRepository.save(user);
     }

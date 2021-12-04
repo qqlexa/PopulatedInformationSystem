@@ -28,11 +28,7 @@ public class ProjectEntity {
     @JoinColumn(name = "location_id", nullable = false)
     private LocationEntity location;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "room_id", nullable = false)
-    private RoomEntity room;
-
     @OneToOne(mappedBy = "project")
-    private ManagerProjectEntity manager;
+    private CreatorProjectEntity manager;
 
 }

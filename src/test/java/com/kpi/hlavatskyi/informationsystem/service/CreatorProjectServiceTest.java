@@ -1,7 +1,7 @@
 package com.kpi.hlavatskyi.informationsystem.service;
 
-import com.kpi.hlavatskyi.informationsystem.model.dto.ManagerProjectDTO;
-import com.kpi.hlavatskyi.informationsystem.repository.ManagerProjectRepository;
+import com.kpi.hlavatskyi.informationsystem.model.dto.CreatorProjectDTO;
+import com.kpi.hlavatskyi.informationsystem.repository.CreatorProjectRepository;
 import javassist.NotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,21 +24,21 @@ import static org.mockito.Mockito.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ManagerProjectServiceTest {
+public class CreatorProjectServiceTest {
 
     @Autowired
-    private ManagerProjectService managerProjectsService;
+    private CreatorProjectService creatorProjectsService;
 
     @MockBean
-    private ManagerProjectRepository managerProjectsRepository;
+    private CreatorProjectRepository creatorProjectsRepository;
 
     @MockBean
     private UserService userService;
 
     @Test
     public void addProject_ManagerProjectsEntity_CallAddProjectMethodWithManagerProjectsEntity() throws NotFoundException {
-        ManagerProjectDTO managerProjectDTO = new ManagerProjectDTO();
-        managerProjectDTO.setManagerId(1L);
+        CreatorProjectDTO creatorProjectDTO = new CreatorProjectDTO();
+        creatorProjectDTO.setMayorId(1L);
 
         Map<String, Object> expectedMap = new HashMap<>();
         expectedMap.put("Status", "added");
@@ -46,18 +46,18 @@ public class ManagerProjectServiceTest {
         ResponseEntity<Map<String, Object>> expectedResponseEntity =
                 new ResponseEntity<>(expectedMap, HttpStatus.OK);
 
-        ResponseEntity<Map<String, Object>> actualResponseEntity = managerProjectsService.addProject(managerProjectDTO);
+        ResponseEntity<Map<String, Object>> actualResponseEntity = creatorProjectsService.addProject(creatorProjectDTO);
 
         assertEquals(expectedResponseEntity, actualResponseEntity);
 
-        verify(managerProjectsRepository, times(1)).save(ArgumentMatchers.any());
+        verify(creatorProjectsRepository, times(1)).save(ArgumentMatchers.any());
         verify(userService,  times(1)).get(1L);
     }
 
     @Test
     public void addProject_ManagerProjectsEntity_CallAddProjectMethodWithException() throws NotFoundException {
-        ManagerProjectDTO managerProjectDTO = new ManagerProjectDTO();
-        managerProjectDTO.setManagerId(1L);
+        CreatorProjectDTO creatorProjectDTO = new CreatorProjectDTO();
+        creatorProjectDTO.setMayorId(1L);
 
         Map<String, Object> expectedMap = new HashMap<>();
         expectedMap.put("Status", "error");
@@ -67,19 +67,19 @@ public class ManagerProjectServiceTest {
 
         when(userService.get(anyLong())).thenThrow(new NotFoundException(anyString()));
 
-        ResponseEntity<Map<String, Object>> actualResponseEntity = managerProjectsService.addProject(managerProjectDTO);
+        ResponseEntity<Map<String, Object>> actualResponseEntity = creatorProjectsService.addProject(creatorProjectDTO);
 
         assertEquals(expectedResponseEntity, actualResponseEntity);
 
         verify(userService,  times(1)).get(1L);
-        verify(managerProjectsRepository, times(0)).existsByProject(any());
+        verify(creatorProjectsRepository, times(0)).existsByProject(any());
     }
 
     @Test
     public void addProject_ManagerProjectsEntity_CallAddProjectMethodWithManagerProjectsEntityExisted()
             throws NotFoundException {
-        ManagerProjectDTO managerProjectDTO = new ManagerProjectDTO();
-        managerProjectDTO.setManagerId(1L);
+        CreatorProjectDTO creatorProjectDTO = new CreatorProjectDTO();
+        creatorProjectDTO.setMayorId(1L);
 
         Map<String, Object> expectedMap = new HashMap<>();
         expectedMap.put("Status", "existed");
@@ -87,14 +87,14 @@ public class ManagerProjectServiceTest {
         ResponseEntity<Map<String, Object>> expectedResponseEntity =
                 new ResponseEntity<>(expectedMap, HttpStatus.OK);
 
-        when(managerProjectsRepository.existsByProject(any())).thenReturn(true);
+        when(creatorProjectsRepository.existsByProject(any())).thenReturn(true);
 
-        ResponseEntity<Map<String, Object>> actualResponseEntity = managerProjectsService.addProject(managerProjectDTO);
+        ResponseEntity<Map<String, Object>> actualResponseEntity = creatorProjectsService.addProject(creatorProjectDTO);
 
         assertEquals(expectedResponseEntity, actualResponseEntity);
 
         verify(userService,  times(1)).get(1L);
-        verify(managerProjectsRepository, times(1)).existsByProject(any());
+        verify(creatorProjectsRepository, times(1)).existsByProject(any());
     }
 
 }

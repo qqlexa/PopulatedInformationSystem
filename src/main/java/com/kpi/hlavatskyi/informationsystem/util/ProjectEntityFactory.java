@@ -1,43 +1,32 @@
 package com.kpi.hlavatskyi.informationsystem.util;
 
 import com.kpi.hlavatskyi.informationsystem.entity.LocationEntity;
-import com.kpi.hlavatskyi.informationsystem.entity.RoomEntity;
 import com.kpi.hlavatskyi.informationsystem.entity.ProjectEntity;
 import com.kpi.hlavatskyi.informationsystem.model.Location;
-import com.kpi.hlavatskyi.informationsystem.model.Room;
 import com.kpi.hlavatskyi.informationsystem.model.Project;
-import com.kpi.hlavatskyi.informationsystem.model.dto.ManagerProjectDTO;
+import com.kpi.hlavatskyi.informationsystem.model.dto.CreatorProjectDTO;
 
 public final class ProjectEntityFactory {
 
     public ProjectEntityFactory() {}
 
-    public static ProjectEntity create(ManagerProjectDTO managerProjectDTO) {
+    public static ProjectEntity create(CreatorProjectDTO creatorProjectDTO) {
         ProjectEntity project = new ProjectEntity();
-        project.setName(managerProjectDTO.getName());
-        project.setPrice(managerProjectDTO.getPrice());
-        project.setDate(managerProjectDTO.getDate());
-        project.setStatus(managerProjectDTO.getStatus());
-        project.setLocation(getLocationEntity(managerProjectDTO));
-        project.setRoom(getRoomEntity(managerProjectDTO));
+        project.setName(creatorProjectDTO.getName());
+        project.setPrice(creatorProjectDTO.getPrice());
+        project.setDate(creatorProjectDTO.getDate());
+        project.setStatus(creatorProjectDTO.getStatus());
+        project.setLocation(getLocationEntity(creatorProjectDTO));
         return project;
     }
 
-    private static LocationEntity getLocationEntity(ManagerProjectDTO managerProjectDTO) {
+    private static LocationEntity getLocationEntity(CreatorProjectDTO creatorProjectDTO) {
         LocationEntity location = new LocationEntity();
-        location.setCountry(managerProjectDTO.getCounty());
-        location.setCity(managerProjectDTO.getCity());
-        location.setStreet(managerProjectDTO.getStreet());
-        location.setBuild(managerProjectDTO.getBuild());
+        location.setCountry(creatorProjectDTO.getCountry());
+        location.setCity(creatorProjectDTO.getCity());
+        location.setStreet(creatorProjectDTO.getStreet());
+        location.setBuild(creatorProjectDTO.getBuild());
         return location;
-    }
-
-    private static RoomEntity getRoomEntity(ManagerProjectDTO managerProjectDTO) {
-        RoomEntity room = new RoomEntity();
-        room.setName(managerProjectDTO.getRoomName());
-        room.setNumberRows(managerProjectDTO.getNumberRows());
-        room.setNumberSeats(managerProjectDTO.getNumberSeats());
-        return room;
     }
 
     public static ProjectEntity create(Project project) {
@@ -51,23 +40,13 @@ public final class ProjectEntityFactory {
         projectEntity.setLocation(getLocationEntity(project));
         projectEntity.setStatus(project.getStatus());
         projectEntity.setPrice(project.getPrice());
-        projectEntity.setRoom(getRoomEntity(project));
         return projectEntity;
-    }
-
-    private static RoomEntity getRoomEntity(Project project) {
-        RoomEntity roomEntity = new RoomEntity();
-        Room room = project.getRoom();
-        roomEntity.setName(room.getName());
-        roomEntity.setNumberRows(room.getNumberRows());
-        roomEntity.setNumberSeats(room.getNumberSeats());
-        return roomEntity;
     }
 
     private static LocationEntity getLocationEntity(Project project) {
         LocationEntity locationEntity = new LocationEntity();
         Location location = project.getLocation();
-        locationEntity.setCountry(location.getCounty());
+        locationEntity.setCountry(location.getCountry());
         locationEntity.setCity(location.getCity());
         locationEntity.setStreet(location.getStreet());
         locationEntity.setBuild(location.getBuild());

@@ -26,7 +26,4 @@ public class Project {
     @NotEmpty(message = "Location should not be empty")
     private Location location;
 
-    @NotEmpty(message = "Room should not be empty")
-    private Room room;
-
 }

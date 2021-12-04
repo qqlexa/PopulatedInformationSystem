@@ -30,7 +30,7 @@ public class UserEntity {
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<RoleEntity> roles;
 
-    @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ManagerProjectEntity> project;
+    @OneToMany(mappedBy = "mayor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<CreatorProjectEntity> project;
 
 }

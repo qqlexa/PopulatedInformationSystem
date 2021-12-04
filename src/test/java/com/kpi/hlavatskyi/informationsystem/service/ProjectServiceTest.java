@@ -2,7 +2,6 @@ package com.kpi.hlavatskyi.informationsystem.service;
 
 import com.kpi.hlavatskyi.informationsystem.entity.ProjectEntity;
 import com.kpi.hlavatskyi.informationsystem.model.Location;
-import com.kpi.hlavatskyi.informationsystem.model.Room;
 import com.kpi.hlavatskyi.informationsystem.model.Project;
 import com.kpi.hlavatskyi.informationsystem.model.ProjectStatus;
 import com.kpi.hlavatskyi.informationsystem.repository.ProjectRepository;
@@ -34,12 +33,11 @@ public class ProjectServiceTest {
     @Test
     public void insertSuccessful() {
         Project project = new Project();
-        project.setName("Test project");
+        project.setName("Create new project");
         project.setPrice(150.0);
         Date date = new Date(System.currentTimeMillis());
         project.setDate(date);
         project.setLocation(new Location("Country", "City", "Street", "Build"));
-        project.setRoom(new Room("First room",20, 30));
         project.setStatus(ProjectStatus.NOT_CONFIRMED.toString());
 
         ProjectEntity projectEntity = ProjectEntityFactory.create(project);

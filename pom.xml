@@ -8,11 +8,11 @@
         <version>2.5.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.kpi.mishchenko</groupId>
-    <artifactId>booking-project</artifactId>
+    <groupId>com.kpi.hlavatskyi</groupId>
+    <artifactId>information-system</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>booking-project</name>
-    <description>booking-project</description>
+    <name>information-system</name>
+    <description>information-system</description>
     <properties>
         <java.version>11</java.version>
     </properties>
